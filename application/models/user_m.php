@@ -23,9 +23,6 @@ class User_m extends CI_Model
             if ($row->password === md5($password)) {
                 $session_data = array(
                     'username' => $row->username,
-                    'phone' => $row->phone,
-                    'address' => $row->address,
-                    'level' => $row->user_level,
                 );
                 $this->set_session($session_data);
                 return 'logged_in';
@@ -41,9 +38,6 @@ class User_m extends CI_Model
     {
         $sess_data = array(
             'username' => $session_data['username'],
-            'phone' => $session_data['phone'],
-            'address' => $session_data['address'],
-            'level' => $session_data['level'],
             'logged_in' => 1,
         );
 
