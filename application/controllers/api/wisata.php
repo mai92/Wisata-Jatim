@@ -14,13 +14,17 @@ class Wisata extends REST_Controller
 
     public function get_kabkot_get()
     {
-        if (empty($this->get('offset'))) {
+        $offset = $this->get('offset');
+        $limit = $this->get('limit');
+        $idkabkot = $this->get('idkabkot');
+
+        if (empty($offset)) {
             $offset = 0;
         } else {
             $offset = $this->get('offset');
         }
 
-        if (empty($limit = $this->get('limit'))) {
+        if (empty($limit)) {
             $limit = 10;
         } else {
             $limit = $this->get('limit');
@@ -31,19 +35,23 @@ class Wisata extends REST_Controller
 
     public function get_wisata_get()
     {
-        if (empty($this->get('offset'))) {
+        $offset = $this->get('offset');
+        $limit = $this->get('limit');
+        $idkabkot = $this->get('idkabkot');
+
+        if (empty($offset)) {
             $offset = 0;
         } else {
             $offset = $this->get('offset');
         }
 
-        if (empty($limit = $this->get('limit'))) {
+        if (empty($limit)) {
             $limit = 10;
         } else {
             $limit = $this->get('limit');
         }
 
-        if (!empty($this->get('idkabkot'))) {
+        if (!empty($idkabkot)) {
             if ($this->wm->count_wisata($this->get('idkabkot')) == 0) {
                 $this->response(array('status' => 'error', 'message' => 'Tidak ada data'));
             } else {
@@ -56,19 +64,22 @@ class Wisata extends REST_Controller
 
     public function get_kuliner_get()
     {
-        if (empty($this->get('offset'))) {
+        $offset = $this->get('offset');
+        $limit = $this->get('limit');
+        $idkabkot = $this->get('idkabkot');
+
+        if (empty($offset)) {
             $offset = 0;
         } else {
             $offset = $this->get('offset');
         }
 
-        if (empty($limit = $this->get('limit'))) {
+        if (empty($limit)) {
             $limit = 10;
         } else {
             $limit = $this->get('limit');
         }
-
-        if (!empty($this->get('idkabkot'))) {
+        if (!empty($idkabkot)) {
             if ($this->wm->count_kuliner($this->get('idkabkot')) == 0) {
                 $this->response(array('status' => 'error', 'message' => 'Tidak ada data'));
             } else {
@@ -81,19 +92,23 @@ class Wisata extends REST_Controller
 
     public function get_kerajinan_get()
     {
-        if (empty($this->get('offset'))) {
+        $offset = $this->get('offset');
+        $limit = $this->get('limit');
+        $idkabkot = $this->get('idkabkot');
+
+        if (empty($offset)) {
             $offset = 0;
         } else {
             $offset = $this->get('offset');
         }
 
-        if (empty($limit = $this->get('limit'))) {
+        if (empty($limit)) {
             $limit = 10;
         } else {
             $limit = $this->get('limit');
         }
 
-        if (!empty($this->get('idkabkot'))) {
+        if (!empty($idkabkot)) {
             if ($this->wm->count_kerajinan($this->get('idkabkot')) == 0) {
                 $this->response(array('status' => 'error', 'message' => 'Tidak ada data'));
             } else {
@@ -106,7 +121,9 @@ class Wisata extends REST_Controller
 
     public function show_detail_get()
     {
-        if (!empty($this->get('id')) && !empty($this->get('segment'))) {
+        $id = $this->get('id');
+        $segment = $this->get('segment');
+        if (!empty($id) && !empty($segment)) {
             if ($this->get('segment') == "wisata") {
                 $this->response(array('status' => 'success', 'detail' => $this->wm->detail_wisata($this->get('id'))));
             } else if ($this->get('segment') == "kuliner") {
