@@ -1,0 +1,6 @@
+[30-Jun-2015 05:38:30 UTC] PHP Fatal error:  Can't use method return value in write context in /home/medianwe/public_html/jatim/application/controllers/api/wisata.php on line 17
+[30-Jun-2015 05:39:07 UTC] PHP Fatal error:  Can't use method return value in write context in /home/medianwe/public_html/jatim/application/controllers/api/wisata.php on line 17
+[30-Jun-2015 06:02:54 UTC] PHP Fatal error:  Can't use method return value in write context in /home/medianwe/public_html/jatim/application/controllers/api/wisata.php on line 17
+[30-Jun-2015 06:03:02 UTC] PHP Fatal error:  Can't use method return value in write context in /home/medianwe/public_html/jatim/application/controllers/api/wisata.php on line 17
+[30-Jun-2015 06:03:56 UTC] PHP Fatal error:  Can't use method return value in write context in /home/medianwe/public_html/jatim/application/controllers/api/wisata.php on line 17
+[30-Jun-2015 12:21:29 UTC] PHP Fatal error:  Can't use method return value in write context in /home/medianwe/public_html/jatim/application/controllers/api/wisata.php on line 17
