@@ -11,7 +11,7 @@ $this->load->view('admin/header');
           </h1>
           <ol class="breadcrumb">
             <li><a href="<?=base_url()?>"><i class="fa fa-dashboard"></i> Home</a></li>
-             <li><a href="<?=base_url('kerajinan')?>"><i class="fa fa-dashboard"></i> Kerajinan</a></li>
+             <li><a href="<?=base_url('kabkot')?>"><i class="fa fa-dashboard"></i> Kabupaten / Kota</a></li>
             <li class="active"><?=$title?></li>
           </ol>
         </section>
@@ -28,28 +28,19 @@ $this->load->view('admin/header');
                     <div class="danger">
                       <?=$error;?>
                     </div>
-                    <form action="<?=base_url('kerajinan/add')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <form action="<?=base_url('kabkot/add')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                       <div class="form-group">
-                      <label for="exampleInputEmail1">Nama kerajinan</label>
-                      <input type="text" class="form-control" name="nama_kerajinan" id="" placeholder="Nama kerajinan">
-                    </div>
-                    <div class="form-group">
-                      <label for="">Kabupaten / Kota</label>
-                      <select name="idkabkot" class="form-control" id="">
-                        <?php foreach ($kabkot as $k) {?>
-                            <option value="<?=$k->id_kabkot?>"><?=$k->nama_kabkot?></option>
-                        <?php }
-?>
-                      </select>
+                      <label for="">Nama Kabupaten / Kota</label>
+                      <input type="text" class="form-control" name="nama_kabkot" id="" placeholder="Nama kabupaten / kota" value="<?=$data->nama_kabkot?>">
                     </div>
                     <div class="form-group">
                       <label for="">Keterangan</label>
-                      <textarea name="keterangan" id="" cols="30" rows="8" class="form-control">Keterangan</textarea>
+                      <textarea name="keterangan" id="" cols="30" rows="8" class="form-control"><?=$data->keterangan?></textarea>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile">Gambar</label>
                       <input type="file" name="image">
-                      <p class="help-block">Gambar kerajinan</p>
+                      <p class="help-block">Gambar Kabupaten / Kota</p>
                     </div>
                   </div><!-- /.box-body -->
 

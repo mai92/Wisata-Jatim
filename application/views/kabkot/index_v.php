@@ -43,7 +43,7 @@ $this->load->view('admin/header');
                           <td><?=$row->keterangan?></td>
                           <td><?=$row->gambar?></td>
                           <td>
-                          <a href="" class="btn btn-primary btn-xs">Ubah</a>
+                          <a href="<?=base_url('kabkot/edit/' . $row->id_kabkot)?>" class="btn btn-primary btn-xs">Ubah</a>
                           <a href="" class="btn btn-danger btn-xs">Hapus</a>
                           </td>
 

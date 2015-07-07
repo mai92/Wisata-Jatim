@@ -19,10 +19,17 @@ class Kabkot_m extends CI_Model
         return $data;
     }
 
+    public function get_by_id($id)
+    {
+        $data = $this->db->get_where($this->table, array($this->primarykey => $id))->row();
+
+        return $data;
+    }
+
     public function get_name($id)
     {
         $this->db->select('nama_kabkot');
-        $data = $this->db->get_where($this->table, array('id_kabkot' => $id))->row();
+        $data = $this->db->get_where($this->table, array($this->primarykey => $id))->row();
         return $data->nama_kabkot;
     }
 
@@ -38,7 +45,7 @@ class Kabkot_m extends CI_Model
 
     public function delete($id)
     {
-        $this->db->delete($this->table, array($primarykey => $id));
+        $this->db->delete($this->table, array($this->primarykey => $id));
     }
 
 }

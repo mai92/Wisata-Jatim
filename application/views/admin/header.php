@@ -14,7 +14,7 @@
     <link href="<?=base_url('assets')?>/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="<?=base_url('assets')?>/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?=base_url('assets')?>/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 
@@ -27,7 +27,7 @@
   </head>
   <body class="skin-green">
     <div class="wrapper">
-      
+
       <header class="main-header">
         <a href="<?=base_url()?>" class="logo"><b>WisataJatim</b> Admin</a>
         <!-- Header Navbar: style can be found in header.less -->
@@ -42,12 +42,12 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-              
+
               <!-- Notifications: style can be found in dropdown.less -->
               <!-- User Account: style can be found in dropdown.less -->
               <li class="user user-menu">
-                <a href="<?=base_url('admin/logout')?>" data-toggle="dropdown">
-                  <span class="hidden-xs"><?=$this->session->userdata('username')?></span>
+                <a href="<?=base_url('admin/logout')?>">
+                  <span class="hidden-xs">Log Out</span>
                 </a>
               </li>
             </ul>
@@ -97,8 +97,8 @@
                 <i class="fa fa-envelope"></i> <span>Kerajinan</span>
               </a>
             </li>
-            
-            
+
+
         </section>
         <!-- /.sidebar -->
       </aside>

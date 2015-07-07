@@ -89,6 +89,30 @@ class Api_wisata_m extends CI_Model
         return $data;
     }
 
+    public function search_kuliner($keyword)
+    {
+        $this->db->like('nama_kuliner', $keyword);
+        $query = $this->db->get('kuliner');
+
+        return $query->result();
+    }
+
+    public function search_kerajinan($keyword)
+    {
+        $this->db->like('nama_kerajinan', $keyword);
+        $query = $this->db->get('kerajinan');
+
+        return $query->result();
+    }
+
+    public function search_wisata($keyword)
+    {
+        $this->db->like('nama_wisata', $keyword);
+        $query = $this->db->get('wisata');
+
+        return $query->result();
+    }
+
 }
 
 /* End of file wisata_m.php */

@@ -137,6 +137,21 @@ class Wisata extends REST_Controller
             $this->response(array('status' => 'error', 'message' => 'Isi ID + segment'));
         }
     }
+
+    public function search_post()
+    {
+        $keyword = $this->post('keyword');
+
+        $sekul = $this->wm->search_kuliner($keyword);
+        $seker = $this->wm->search_kerajinan($keyword);
+        $sewis = $this->wm->search_wisata($keyword);
+
+        if (empty($keyword)) {
+            $this->response(array('status' => 0, 'message' => 'Isi Keywordnya'));
+        } else {
+            $this->response(array('wisata' => $sewis, 'kuliner' => $sekul, 'kerajinan' => $seker));
+        }
+    }
 }
 
 /* End of file feed.php */

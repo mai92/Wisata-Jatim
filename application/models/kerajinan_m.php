@@ -19,6 +19,14 @@ class Kerajinan_m extends CI_Model
 
         return $data;
     }
+
+    public function get_by_id($id)
+    {
+        $data = $this->db->get_where($this->table, array($this->primarykey => $id))->row();
+
+        return $data;
+    }
+
     public function add($data)
     {
         $this->db->insert($this->table, $data);
@@ -31,7 +39,7 @@ class Kerajinan_m extends CI_Model
 
     public function delete($id)
     {
-        $this->db->delete($this->table, array($primarykey => $id));
+        $this->db->delete($this->table, array($this->primarykey => $id));
     }
 
 }
