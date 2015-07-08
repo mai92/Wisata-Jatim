@@ -59,7 +59,7 @@ class Api_wisata_m extends CI_Model
 
     public function get_kerajinan($idkabkot = '', $offset = 0, $limit = 10)
     {
-        $query = "select w.id_kerajinan as id,k.id_kabkot,w.gambar,w.keterangan,w.nama_kerajinan as nama,k.nama_kabkot from kuliner w join kabkot k where w.id_kabkot=k.id_kabkot and w.id_kabkot=$idkabkot order by nama_kerajinan asc limit $offset,$limit";
+        $query = "select w.id_kerajinan as id,k.id_kabkot,w.gambar,w.keterangan,w.nama_kerajinan as nama,k.nama_kabkot from kerajinan w join kabkot k where w.id_kabkot=k.id_kabkot and w.id_kabkot=$idkabkot order by nama_kerajinan asc limit $offset,$limit";
         $data = $this->db->query($query)->result();
 
         return $data;
