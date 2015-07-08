@@ -69,7 +69,7 @@ class Kabkot extends CI_Controller
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['file_name'] = "kabkot-" . time();
             $this->load->library('upload', $config);
-            $this->upload->do_upload('image');
+            //$this->upload->do_upload('image');
             $img = $this->upload->data();
 
             $image = $img['file_name'];
