@@ -28,7 +28,8 @@ $this->load->view('admin/header');
                     <div class="danger">
                       <?=$error;?>
                     </div>
-                    <form action="<?=base_url('kabkot/add')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <form action="<?=base_url('kabkot/edit')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?=$data->id_kabkot?>">
                       <div class="form-group">
                       <label for="">Nama Kabupaten / Kota</label>
                       <input type="text" class="form-control" name="nama_kabkot" id="" placeholder="Nama kabupaten / kota" value="<?=$data->nama_kabkot?>">
@@ -45,7 +46,7 @@ $this->load->view('admin/header');
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-primary">Ubah</button>
                   </div>
                 </form>
               </div><!-- /.box -->

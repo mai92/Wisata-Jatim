@@ -50,13 +50,17 @@ class Kabkot extends CI_Controller
         $this->load->view('kabkot/add_v', $data);
     }
 
-    public function edit($id)
+    public function edit($id = "")
     {
         $this->load->model('kabkot_m');
+        $this->load->helper('file');
+        $idup = $this->input->post('id');
         $data['title'] = "Ubah Data Kabupaten / Kota";
         $data['error'] = "";
         $data['data'] = $this->kabkot_m->get_by_id($id);
         $this->form_validation->set_rules('nama_kabkot', 'Nama Kabupaten / Kota', 'trim|required|xss_clean');
+
+        $filename = $data['data']->gambar;
 
         if ($this->form_validation->run() === false) {
             $data['error'] = validation_errors();
@@ -70,14 +74,23 @@ class Kabkot extends CI_Controller
 
             $image = $img['file_name'];
 
-            // $data = array(
-            //     'nama_kabkot' => $this->input->post('nama_kabkot'),
-            //     'keterangan' => $this->input->post('keterangan'),
-            //     'gambar' => $image,
-            // );
+            if ($this->upload->do_upload('image') == false) {
+                $dataup = array(
+                    'nama_kabkot' => $this->input->post('nama_kabkot'),
+                    'keterangan' => $this->input->post('keterangan'),
+                );
+            } else {
+                $dataup = array(
+                    'nama_kabkot' => $this->input->post('nama_kabkot'),
+                    'keterangan' => $this->input->post('keterangan'),
+                    'gambar' => $image,
+                );
 
-            // $this->db->insert('kabkot', $data);
-            redirect(base_url('kabkot'), 'refresh');
+                delete_files(base_url('uploads/gambar/' . $filename), true);
+            }
+
+            $this->db->update('kabkot', $dataup, array('id_kabkot' => $idup));
+            redirect(base_url('kabkot'));
         }
 
         $this->load->view('kabkot/edit_v', $data);

@@ -41,7 +41,7 @@ $this->load->view('admin/header');
                           <td><?=$i?></td>
                           <td><?=$row->nama_kabkot?></td>
                           <td><?=$row->keterangan?></td>
-                          <td><?=$row->gambar?></td>
+                          <td><img src="<?=base_url('uploads/gambar')?>/<?=$row->gambar?>" alt="<?=$row->nama_kabkot?>" height="32px" width="32px"></td>
                           <td>
                           <a href="<?=base_url('kabkot/edit/' . $row->id_kabkot)?>" class="btn btn-primary btn-xs">Ubah</a>
                           <a href="" class="btn btn-danger btn-xs">Hapus</a>

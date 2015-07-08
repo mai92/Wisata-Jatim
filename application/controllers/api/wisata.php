@@ -12,6 +12,10 @@ class Wisata extends REST_Controller
 
     }
 
+    /**
+     * [get_kabkot_get fungsi menampilkan data kabupaten / kota ]
+     * @return [type] [description]
+     */
     public function get_kabkot_get()
     {
         $offset = $this->get('offset');
@@ -33,6 +37,10 @@ class Wisata extends REST_Controller
         $this->response(array('status' => 1, 'kabkot' => $this->wm->get_kabkot($offset, $limit)));
     }
 
+    /**
+     * [get_wisata_get fungsi mendapatkan daftar wisata yang ada berdasarkan id kabupaten/kota]
+     * @return [type] [description]
+     */
     public function get_wisata_get()
     {
         $offset = $this->get('offset');
@@ -62,6 +70,10 @@ class Wisata extends REST_Controller
         }
     }
 
+    /**
+     * [get_kuliner_get fungsi mendapatkan daftar kuliner yang ada berdasarkan id kabupaten/kota]
+     * @return [type] [description]
+     */
     public function get_kuliner_get()
     {
         $offset = $this->get('offset');
@@ -90,6 +102,10 @@ class Wisata extends REST_Controller
         }
     }
 
+    /**
+     * [get_kerajinan_get fungsi mendapatkan daftar kerajinan yang ada berdasarkan id kabupaten/kota]
+     * @return [type] [description]
+     */
     public function get_kerajinan_get()
     {
         $offset = $this->get('offset');
@@ -119,6 +135,10 @@ class Wisata extends REST_Controller
         }
     }
 
+    /**
+     * [show_detail_get menampilkan data detail dari kuliner,wisata,kerajinan dengan segment]
+     * @return [type] [description]
+     */
     public function show_detail_get()
     {
         $id = $this->get('id');
@@ -138,6 +158,10 @@ class Wisata extends REST_Controller
         }
     }
 
+    /**
+     * [search_post API untuk pencarian wisata,kuliner,kerajinan di android]
+     * @return [type] [description]
+     */
     public function search_post()
     {
         $keyword = $this->post('keyword');

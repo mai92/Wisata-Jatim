@@ -43,7 +43,7 @@ $this->load->view('admin/header');
                           <td><?=$row->nama_kerajinan?></td>
                           <td><?=$this->kabkot_m->get_name($row->id_kabkot)?></td>
                           <td><?=$row->keterangan?></td>
-                          <td><?=$row->gambar?></td>
+                          <td><img src="<?=base_url('uploads/gambar')?>/<?=$row->gambar?>" alt="<?=$row->nama_kerajinan?>" height="32px" width="32px"></td>
                           <td>
                           <a href="<?=base_url('kerajinan/edit')?>/<?=$row->id_kerajinan?>" class="btn btn-primary btn-xs">Ubah</a>
                           <a href="<?=base_url('kerajinan/delete')?>/<?=$row->id_kerajinan?>" class="btn btn-danger btn-xs">Hapus</a>
