@@ -61,7 +61,7 @@ class Kabkot extends CI_Controller
         $this->form_validation->set_rules('nama_kabkot', 'Nama Kabupaten / Kota', 'trim|required|xss_clean');
 
         $filename = $data['data']->gambar;
-
+        echo base_url("uploads/gambar/" . $filename);
         if ($this->form_validation->run() === false) {
             $data['error'] = validation_errors();
         } else {
@@ -69,15 +69,14 @@ class Kabkot extends CI_Controller
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['file_name'] = "kabkot-" . time();
             $this->load->library('upload', $config);
-            //$this->upload->do_upload('image');
 
-            if ($this->upload->do_upload('image') == false) {
+            if ($this->upload->do_upload('image') === false) {
                 $dataup = array(
                     'nama_kabkot' => $this->input->post('nama_kabkot'),
                     'keterangan' => $this->input->post('keterangan'),
                 );
             } else {
-                $this->upload->do_upload('image');
+                unlink(base_url("uploads/gambar/" . $filename));
                 $img = $this->upload->data();
                 $image = $img['file_name'];
 
@@ -86,8 +85,6 @@ class Kabkot extends CI_Controller
                     'keterangan' => $this->input->post('keterangan'),
                     'gambar' => $image,
                 );
-
-                delete_files(base_url('uploads/gambar/' . $filename), true);
             }
 
             $this->db->update('kabkot', $dataup, array('id_kabkot' => $idup));
