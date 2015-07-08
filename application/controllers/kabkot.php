@@ -70,9 +70,6 @@ class Kabkot extends CI_Controller
             $config['file_name'] = "kabkot-" . time();
             $this->load->library('upload', $config);
             //$this->upload->do_upload('image');
-            $img = $this->upload->data();
-
-            $image = $img['file_name'];
 
             if ($this->upload->do_upload('image') == false) {
                 $dataup = array(
@@ -80,6 +77,10 @@ class Kabkot extends CI_Controller
                     'keterangan' => $this->input->post('keterangan'),
                 );
             } else {
+                $this->upload->do_upload('image');
+                $img = $this->upload->data();
+                $image = $img['file_name'];
+
                 $dataup = array(
                     'nama_kabkot' => $this->input->post('nama_kabkot'),
                     'keterangan' => $this->input->post('keterangan'),
