@@ -27,6 +27,13 @@ class Kerajinan_m extends CI_Model
         return $data;
     }
 
+    public function get_kabkotid_by_id($id)
+    {
+        $data = $this->db->get_where($this->table, array($this->primarykey => $id))->row();
+
+        return $data->id_kabkot;
+    }
+
     public function add($data)
     {
         $this->db->insert($this->table, $data);

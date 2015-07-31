@@ -52,6 +52,60 @@ class Kuliner extends CI_Controller
         $this->load->view('kuliner/add_v', $data);
     }
 
+    public function edit($id = "")
+    {
+        $this->load->model('kabkot_m');
+        $this->load->helper('file');
+        $idup = $this->input->post('id');
+        $data['kabkot'] = $this->kabkot_m->get();
+        $data['idkk'] = $this->km->get_kabkotid_by_id($id);
+        $data['title'] = "Ubah Data Kuliner";
+        $data['error'] = "";
+        $data['data'] = $this->km->get_by_id($id);
+        $this->form_validation->set_rules('nama_kuliner', 'Nama Kabupaten / Kota', 'trim|required|xss_clean');
+
+        $filename = $data['data']->gambar;
+
+        if ($this->form_validation->run() === false) {
+            $data['error'] = validation_errors();
+        } else {
+            $config['upload_path'] = './uploads/gambar';
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['file_name'] = "kuliner-" . time();
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image') === false) {
+                $dataup = array(
+                    'nama_kuliner' => $this->input->post('nama_kuliner'),
+                    'keterangan' => $this->input->post('keterangan'),
+                     'id_kabkot'  => $this->input->post('idkabkot'),
+                );
+            } else {
+                delete_files(base_url("uploads/gambar/" . $filename));
+                $img = $this->upload->data();
+                $image = $img['file_name'];
+
+                $dataup = array(
+                    'nama_kuliner' => $this->input->post('nama_kuliner'),
+                    'keterangan' => $this->input->post('keterangan'),
+                     'id_kabkot'  => $this->input->post('idkabkot'),
+                    'gambar' => $image,
+                );
+            }
+
+            $this->db->update('kuliner', $dataup, array('id_kuliner' => $idup));
+            redirect(base_url('kuliner'));
+        }
+
+        $this->load->view('kuliner/edit_v', $data);
+    }
+
+    public function delete($id = "")
+    {
+        $this->km->delete($id);
+        redirect(base_url('kuliner'));
+    }
+
 }
 
 /* End of file kuliner.php */

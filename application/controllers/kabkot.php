@@ -94,6 +94,12 @@ class Kabkot extends CI_Controller
         $this->load->view('kabkot/edit_v', $data);
     }
 
+    public function delete($id = "")
+    {
+        $this->kk->delete($id);
+        redirect(base_url('kabkot'));
+    }
+
 }
 
 /* End of file kabkot.php */

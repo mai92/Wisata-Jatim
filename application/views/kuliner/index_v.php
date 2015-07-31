@@ -45,8 +45,8 @@ $this->load->view('admin/header');
                           <td><?=$row->keterangan?></td>
                           <td><img src="<?=base_url('uploads/gambar')?>/<?=$row->gambar?>" alt="<?=$row->nama_kuliner?>" height="32px" width="32px"></td>
                           <td>
-                          <a href="" class="btn btn-primary btn-xs">Ubah</a>
-                          <a href="" class="btn btn-danger btn-xs">Hapus</a>
+                          <a href="<?=base_url('kuliner/edit')?>/<?=$row->id_kuliner?>" class="btn btn-primary btn-xs">Ubah</a>
+                          <a href="<?=base_url('kuliner/delete')?>/<?=$row->id_kuliner?>" class="btn btn-danger btn-xs">Hapus</a>
                           </td>
 
                         </tr>
