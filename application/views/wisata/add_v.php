@@ -44,7 +44,7 @@ $this->load->view('admin/header');
                     </div>
                     <div class="form-group">
                       <label for="">Keterangan</label>
-                      <textarea name="keterangan" id="" cols="30" rows="8" class="form-control">Keterangan</textarea>
+                      <textarea name="keterangan" id="" cols="30" rows="8" placeholder="Keterangan" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile">Gambar</label>
