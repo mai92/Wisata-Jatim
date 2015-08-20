@@ -36,7 +36,7 @@ $this->load->view('admin/header');
                     </div>
                     <div class="form-group">
                       <label for="">Keterangan</label>
-                      <textarea name="keterangan" id="" cols="30" rows="8" class="form-control"><?=$data->keterangan?></textarea>
+                      <textarea name="keterangan" id="editor" cols="30" rows="8" class="form-control"><?=$data->keterangan?></textarea>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile">Gambar</label>

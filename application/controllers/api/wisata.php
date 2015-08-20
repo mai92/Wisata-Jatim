@@ -18,23 +18,23 @@ class Wisata extends REST_Controller
      */
     public function get_kabkot_get()
     {
-        $offset = $this->get('offset');
-        $limit = $this->get('limit');
-        $idkabkot = $this->get('idkabkot');
+        $offset = $this->get('offset'); //fungsi ini untuk menentukan offset data yang diambil dari database , dikirim dari apps (android) , jika kosong nilai limit default = 0
+        $limit = $this->get('limit'); //fungsi ini untuk menentukan limit data yang diambil dari database , dikirim dari apps (android) , jika kosong nilai limit default = 10
+        $idkabkot = $this->get('idkabkot'); //fungsi untuk menentukan id kabupaten/kota yang akan
 
-        if (empty($offset)) {
-            $offset = 0;
+        if (empty($offset)) { //menentukan offset default jika tidak ada inputan dari apps
+            $offset = 0; 
         } else {
             $offset = $this->get('offset');
         }
 
-        if (empty($limit)) {
+        if (empty($limit)) { //menentukan limit default jika tidak ada inputan dari apps
             $limit = 10;
         } else {
             $limit = $this->get('limit');
         }
 
-        $this->response(array('status' => 1, 'kabkot' => $this->wm->get_kabkot($offset, $limit)));
+        $this->response(array('status' => 1, 'kabkot' => $this->wm->get_kabkot($offset, $limit))); //fungsi ini memberikan respon JSON dari model api_wisata_m method get_kabkot , respon JSON berguna agar data dapat ditampilkan di android    
     }
 
     /**
@@ -59,14 +59,14 @@ class Wisata extends REST_Controller
             $limit = $this->get('limit');
         }
 
-        if (!empty($idkabkot)) {
-            if ($this->wm->count_wisata($this->get('idkabkot')) == 0) {
-                $this->response(array('status' => 'error', 'message' => 'Tidak ada data'));
+        if (!empty($idkabkot)) { //mengecek apakah apps mengirimkan id kabupaten / kota
+            if ($this->wm->count_wisata($this->get('idkabkot')) == 0) { //menghitung jumlah data wisata berdasarkan id kabupaten / kota
+                $this->response(array('status' => 'error', 'message' => 'Tidak ada data')); // menampilkan respon tidak ada data jika hasil perhitungan = 0
             } else {
-                $this->response(array('status' => 'success', 'data' => $this->wm->get_wisata($this->get('idkabkot'), $offset, $limit), 'total' => $this->wm->count_wisata($this->get('idkabkot'))));
+                $this->response(array('status' => 'success', 'data' => $this->wm->get_wisata($this->get('idkabkot'), $offset, $limit), 'total' => $this->wm->count_wisata($this->get('idkabkot')))); // respon menampilkan data wisata berdasarkan id kabupaten / kota
             }
         } else {
-            $this->response(array('status' => 'error', 'message' => 'Isi ID Kabkot'));
+            $this->response(array('status' => 'error', 'message' => 'Isi ID Kabkot')); // menampilkan error jika apps tidak mengirimkan data ID kabupaten / kota
         }
     }
 
@@ -91,14 +91,14 @@ class Wisata extends REST_Controller
         } else {
             $limit = $this->get('limit');
         }
-        if (!empty($idkabkot)) {
-            if ($this->wm->count_kuliner($this->get('idkabkot')) == 0) {
-                $this->response(array('status' => 'error', 'message' => 'Tidak ada data'));
+        if (!empty($idkabkot)) { //mengecek apakah apps mengirimkan id kabupaten / kota
+            if ($this->wm->count_kuliner($this->get('idkabkot')) == 0) { //menghitung jumlah kuliner berdasarkan id kabupaten / kota
+                $this->response(array('status' => 'error', 'message' => 'Tidak ada data')); // menampilkan respon tidak ada data jika hasil perhitungan = 0
             } else {
-                $this->response(array('status' => 'success', 'data' => $this->wm->get_kuliner($this->get('idkabkot'), $offset, $limit), 'total' => $this->wm->count_kuliner($this->get('idkabkot'))));
+                $this->response(array('status' => 'success', 'data' => $this->wm->get_kuliner($this->get('idkabkot'), $offset, $limit), 'total' => $this->wm->count_kuliner($this->get('idkabkot')))); // respon menampilkan data kuliner berdasarkan id kabupaten / kota
             }
         } else {
-            $this->response(array('status' => 'error', 'message' => 'Isi ID Kabkot'));
+            $this->response(array('status' => 'error', 'message' => 'Isi ID Kabkot')); // menampilkan error jika apps tidak mengirimkan data ID kabupaten / kota
         }
     }
 
@@ -125,10 +125,10 @@ class Wisata extends REST_Controller
         }
 
         if (!empty($idkabkot)) {
-            if ($this->wm->count_kerajinan($this->get('idkabkot')) == 0) {
-                $this->response(array('status' => 'error', 'message' => 'Tidak ada data'));
+            if ($this->wm->count_kerajinan($this->get('idkabkot')) == 0) { //mengecek apakah apps mengirimkan id kabupaten / kota
+                $this->response(array('status' => 'error', 'message' => 'Tidak ada data')); // menampilkan respon tidak ada data jika hasil perhitungan = 0
             } else {
-                $this->response(array('status' => 'success', 'data' => $this->wm->get_kerajinan($this->get('idkabkot'), $offset, $limit), 'total' => $this->wm->count_kerajinan($this->get('idkabkot'))));
+                $this->response(array('status' => 'success', 'data' => $this->wm->get_kerajinan($this->get('idkabkot'), $offset, $limit), 'total' => $this->wm->count_kerajinan($this->get('idkabkot')))); // respon menampilkan data kerajinan berdasarkan id kabupaten / kota
             }
         } else {
             $this->response(array('status' => 'error', 'message' => 'Isi ID Kabkot'));
