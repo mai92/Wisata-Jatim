@@ -31,7 +31,7 @@ $this->load->view('admin/header');
                     <form action="<?=base_url('kuliner/add')?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
                       <div class="form-group">
                       <label for="exampleInputEmail1">Nama kuliner</label>
-                      <input type="text" class="form-control" name="nama_kuliner" id="" placeholder="Nama kuliner">
+                      <input type="text" class="form-control" name="nama_kuliner" id="" placeholder="Nama kuliner" value="<?= $this->input->post('nama_kuliner') ?>">
                     </div>
                     <div class="form-group">
                       <label for="">Kabupaten / Kota</label>
@@ -44,7 +44,7 @@ $this->load->view('admin/header');
                     </div>
                     <div class="form-group">
                       <label for="">Keterangan</label>
-                      <textarea name="keterangan" id="editor" cols="30" rows="8" placeholder="Keterangan" class="form-control"></textarea>
+                      <textarea name="keterangan" id="editor" cols="30" rows="8" placeholder="Keterangan" class="form-control"><?= $this->input->post('keterangan') ?></textarea>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputFile">Gambar</label>

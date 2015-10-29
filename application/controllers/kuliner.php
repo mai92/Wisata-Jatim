@@ -24,7 +24,11 @@ class Kuliner extends CI_Controller
         $data['title'] = "Tambah Data Kuliner";
         $data['error'] = "";
         $data['kabkot'] = $this->kabkot_m->get();
-        $this->form_validation->set_rules('nama_kuliner', 'Nama Kuliner', 'trim|required|xss_clean');
+        $this->form_validation->set_rules(
+            'nama_kuliner',
+            'Nama Kuliner',
+            'trim|required|is_unique[kuliner.nama_kuliner]|xss_clean'
+            );
 
         if ($this->form_validation->run() === false) {
             $data['error'] = validation_errors();
@@ -32,23 +36,29 @@ class Kuliner extends CI_Controller
             $config['upload_path'] = './uploads/gambar';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['file_name'] = "kuliner-" . time();
-            $this->load->library('upload', $config);
-            $this->upload->do_upload('image');
-            $img = $this->upload->data();
 
-            $image = $img['file_name'];
+           // Validasi Tipe File
+            if ( ! $this->upload->do_upload('image')){
 
-            $data = array(
-                'nama_kuliner' => $this->input->post('nama_kuliner'),
-                'id_kabkot' => $this->input->post('idkabkot'),
-                'keterangan' => $this->input->post('keterangan'),
-                'gambar' => $image,
-            );
+                $error = $this->upload->display_errors();
 
-            $this->db->insert('kuliner', $data);
-            redirect(base_url('kuliner'), 'refresh');
+                $data['error'] = $error;
+            }else{
+                $img = $this->upload->data();
+
+                $image = $img['file_name'];
+
+                $data = array(
+                    'nama_kuliner' => $this->input->post('nama_kuliner'),
+                    'id_kabkot' => $this->input->post('idkabkot'),
+                    'keterangan' => $this->input->post('keterangan'),
+                    'gambar' => $image,
+                );
+
+                $this->db->insert('kuliner', $data);
+                redirect(base_url('kuliner'), 'refresh');
+            }
         }
-
         $this->load->view('kuliner/add_v', $data);
     }
 
@@ -62,7 +72,11 @@ class Kuliner extends CI_Controller
         $data['title'] = "Ubah Data Kuliner";
         $data['error'] = "";
         $data['data'] = $this->km->get_by_id($id);
-        $this->form_validation->set_rules('nama_kuliner', 'Nama Kabupaten / Kota', 'trim|required|xss_clean');
+        $this->form_validation->set_rules(
+            'nama_kuliner',
+            'Nama Kabupaten / Kota',
+            'trim|required|xss_clean'
+            );
 
         $filename = $data['data']->gambar;
 
@@ -82,6 +96,7 @@ class Kuliner extends CI_Controller
                 );
             } else {
                 delete_files(base_url("uploads/gambar/" . $filename));
+
                 $img = $this->upload->data();
                 $image = $img['file_name'];
 

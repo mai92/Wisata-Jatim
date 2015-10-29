@@ -27,7 +27,12 @@ class Kerajinan extends CI_Controller
         $data['title'] = "Tambah Data Kerajinan";
         $data['error'] = "";
         $data['kabkot'] = $this->kabkot_m->get();
-        $this->form_validation->set_rules('nama_kerajinan', 'Nama Kerajinan', 'trim|required|xss_clean');
+
+        $this->form_validation->set_rules(
+            'nama_kerajinan',
+            'Nama Kabupaten / Kota',
+            'trim|required|is_unique[kerajinan.nama_kerajinan]|xss_clean'
+            );
 
         if ($this->form_validation->run() === false) {
             $data['error'] = validation_errors();
@@ -36,20 +41,29 @@ class Kerajinan extends CI_Controller
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['file_name'] = "kerajinan-" . time();
             $this->load->library('upload', $config);
-            $this->upload->do_upload('image');
-            $img = $this->upload->data();
 
-            $image = $img['file_name'];
+            // Validasi Tipe File
+            if ( ! $this->upload->do_upload('image')){
 
-            $data = array(
-                'nama_kerajinan' => $this->input->post('nama_kerajinan'),
-                'id_kabkot' => $this->input->post('idkabkot'),
-                'keterangan' => $this->input->post('keterangan'),
-                'gambar' => $image,
-            );
+                $error = $this->upload->display_errors();
 
-            $this->db->insert('kerajinan', $data);
-            redirect(base_url('kerajinan'), 'refresh');
+                $data['error'] = $error;
+            }else{
+                $img = $this->upload->data();
+
+                $image = $img['file_name'];
+
+                $data = array(
+                    'nama_kerajinan' => $this->input->post('nama_kerajinan'),
+                    'id_kabkot' => $this->input->post('idkabkot'),
+                    'keterangan' => $this->input->post('keterangan'),
+                    'gambar' => $image,
+                );
+
+                $this->db->insert('kerajinan', $data);
+                redirect(base_url('kerajinan'), 'refresh');
+            }
+
         }
 
         $this->load->view('kerajinan/add_v', $data);
@@ -65,7 +79,11 @@ class Kerajinan extends CI_Controller
         $data['title'] = "Ubah Data Kerajinan";
         $data['error'] = "";
         $data['data'] = $this->kr->get_by_id($id);
-        $this->form_validation->set_rules('nama_kerajinan', 'Nama Kabupaten / Kota', 'trim|required|xss_clean');
+        $this->form_validation->set_rules(
+            'nama_kerajinan',
+            'Nama Kabupaten / Kota',
+            'trim|required|xss_clean'
+            );
 
         $filename = $data['data']->gambar;
 
