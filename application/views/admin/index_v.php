@@ -21,9 +21,12 @@
               <div class="box">
                 <div class="box">
                   <div class="box-body">
-                    <div class="alert alert-info">
-                      <h3>Selamat datang di admin panel !</h3>
-                    </div>
+                  <h2>Selamat Datang di Admin Panel</h2>
+                  <h3>Peta Provinsi Jawa Timur :</h3>
+                        <img src="<?=base_url('assets')?>/petajatim.jpg" alt="wisata jatim" height="75%" width="75%"/>
+
+                        <p><h4>Ada banyak keunikan dari tempat wisata di Jawa Timur, di antaranya adalah pesona wisata alam yang memikat serta panorama laut yang menawan hati. Provinsi dengan jumlah penduduk terbanyak di Indonesia ini memiliki ibukota yang juga merupakan salah satu destinasi wisata di Jawa Timur, Surabaya. Keunikan wisata Jawa Timur dapat dijumpai dalamwisata kerajinan serta sajian wisata kuliner Jatim dengan berbagai olahan makanan laut, kreativitas makanan daging, dan sejumlah makanan kuliner khas Jatim lainnya.
+                        Pada halaman ini digunakan untuk admin mengolah data yang akan di tampilkan di aplikasi android seperti data kota, data wisata, data kuliner, dan data kerajinan. </h4></p>
                   </div>
                 </div>
               </div>
