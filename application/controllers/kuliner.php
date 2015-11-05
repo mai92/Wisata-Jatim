@@ -36,7 +36,7 @@ class Kuliner extends CI_Controller
             $config['upload_path'] = './uploads/gambar';
             $config['allowed_types'] = 'gif|jpg|png|jpeg';
             $config['file_name'] = "kuliner-" . time();
-
+            $this->load->library('upload', $config);
            // Validasi Tipe File
             if ( ! $this->upload->do_upload('image')){
 
